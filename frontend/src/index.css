@@ -1,0 +1,231 @@
+:root {
+    /* Premium Coffee Palette */
+    --primary: #c89f65;
+    /* Gold/Latte */
+    --primary-hover: #b08d55;
+    --bg-dark: #0f0f11;
+    /* Almost Black */
+    --bg-panel: #18181b;
+    /* Dark Grey */
+    --surface: rgba(255, 255, 255, 0.03);
+    --glass: rgba(22, 22, 24, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+
+    /* Text */
+    --text-main: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #52525b;
+
+    /* State */
+    --success: #10b981;
+    --danger: #ef4444;
+
+    /* Spacing & Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    /* Font */
+    --font-main: 'Outfit', sans-serif;
+
+    /* Gradints */
+    --gradient-primary: linear-gradient(135deg, #c89f65 0%, #8b6e45 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Utilities */
+.glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    font-family: var(--font-main);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(200, 159, 101, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(200, 159, 101, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    /* Start hidden */
+}
+
+/* Staggered defaults */
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+/* Responsive POS Layout */
+.pos-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.pos-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cart-sidebar {
+    width: 420px;
+    background: var(--bg-panel);
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .pos-layout {
+        flex-direction: column;
+        overflow: auto;
+        height: auto;
+    }
+
+    .pos-content {
+        overflow-y: visible;
+        min-height: 60vh;
+    }
+
+    .cart-sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        border-radius: 20px 20px 0 0;
+    }
+}
+
+/* Reports Responsive */
+.reports-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.reports-controls {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .reports-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .reports-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .glass-panel {
+        padding: 20px !important;
+    }
+
+    h1 {
+        font-size: 2rem !important;
+    }
+}
